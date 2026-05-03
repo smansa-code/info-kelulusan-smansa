@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pengumuman Kelulusan SMAN 1 Sawahlunto</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.container{
+  width:90%;
+  max-width:700px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+h1{font-size:24px;}
+.subtitle{opacity:0.7;margin-bottom:10px;}
+
+#countdownBox{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:20px 0;
+}
+
+.time-box{
+  background:rgba(255,255,255,0.1);
+  padding:15px;
+  border-radius:12px;
+  width:70px;
+}
+
+.time-box span{font-size:22px;font-weight:600;}
+.time-box small{font-size:12px;opacity:0.7;}
+
+.lock-text{color:#ffcc00;margin-top:10px;}
+
+input{
+  width:80%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-top:15px;
+}
+
+button{
+  margin-top:10px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  background:#00c6ff;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.hidden{display:none;}
+
+.snbp-result{
+  margin-top:20px;
+  border-radius:15px;
+  overflow:hidden;
+  color:white;
+  background:linear-gradient(135deg,#0f2027,#000000);
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+  text-align:left;
+}
+
+.snbp-header{
+  background:linear-gradient(90deg,#0b3d91,#0f5bd7);
+  padding:12px 15px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.snbp-body{
+  padding:20px;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.snbp-left{flex:1;}
+
+.snbp-name{font-size:22px;font-weight:600;margin:10px 0;}
+.snbp-info{font-size:13px;margin:4px 0;opacity:0.85;}
+
+.snbp-box{
+  background:white;
+  color:#333;
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.snbp-status{margin-top:15px;font-size:18px;font-weight:600;}
+.lulus{color:#00ffae;}
+.tidak{color:#ff5c5c;}
+
+@media (max-width:600px){
+  body{display:block;}
+  .container{width:100%;max-width:100%;min-height:100vh;border-radius:0;}
+  input,button{width:100%;}
+  .snbp-body{flex-direction:column;}
+}
+
+.rules{
+  margin-top:20px;
+  text-align:left;
+  background:rgba(255,255,255,0.1);
+  padding:15px;
+  border-radius:12px;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.rules h3{
+  margin-bottom:10px;
+  font-size:16px;
+  color:#00c6ff;
+}
+
+.rules ul{
+  padding-left:18px;
+}
+
+.rules li{
+  margin-bottom:6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- 🔥 LOGO LINGKARAN PUTIH -->
+  <div style="display:flex;justify-content:center;margin-bottom:10px;">
+    <div style="
+      width:110px;
+      height:110px;
+      background:white;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    ">
+      <img src="https://upload.wikimedia.org/wikipedia/id/d/d0/Logo_SMA_Negeri_1_Sawahlunto.png"
+      alt="Logo SMAN 1 Sawahlunto"
+      style="width:75px;height:auto;">
+    </div>
+  </div>
+
+  <h1>Pengumuman Kelulusan</h1>
+  <div class="subtitle">SMAN 1 Sawahlunto • 2026</div>
+
+  <div class="rules">
+    <h3>Ketentuan Kelulusan</h3>
+    <ul>
+      <li>Tidak melakukan coret-coret seragam atau atribut sekolah</li>
+      <li>Tidak melakukan konvoi atau arak-arakan kelulusan</li>
+      <li>Tetap menjaga nama baik sekolah setelah kelulusan</li>
+      <li>Tidak melakukan tindakan yang mengganggu ketertiban umum</li>
+      <li>Menggunakan momen kelulusan secara bijak dan positif</li>
+    </ul>
+  </div>
+
+  <div id="countdownBox">
+    <div class="time-box"><span id="days">0</span><small>Hari</small></div>
+    <div class="time-box"><span id="hours">0</span><small>Jam</small></div>
+    <div class="time-box"><span id="minutes">0</span><small>Menit</small></div>
+    <div class="time-box"><span id="seconds">0</span><small>Detik</small></div>
+  </div>
+
+  <div id="statusText" class="lock-text"></div>
+
+  <div id="form" class="hidden">
+    <input type="text" id="nisn" placeholder="Masukkan NISN">
+    <br>
+    <button onclick="cek()">Cek Kelulusan</button>
+  </div>
+
+  <div id="hasil"></div>
+
+</div>
+
+<script>
+
+const target = new Date("2026-05-04T19:22:00+07:00").getTime();
+
+function update(){
+  const now = new Date().getTime();
+  const diff = target - now;
+
+  if(diff <= 0){
+    document.getElementById("countdownBox").style.display="none";
+    document.getElementById("statusText").innerHTML="🔓 Sudah dibuka";
+    document.getElementById("form").classList.remove("hidden");
+    return;
+  }
+
+  document.getElementById("form").classList.add("hidden");
+
+  document.getElementById("days").innerText = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("hours").innerText = Math.floor((diff/(1000*60*60))%24);
+  document.getElementById("minutes").innerText = Math.floor((diff/(1000*60))%60);
+  document.getElementById("seconds").innerText = Math.floor((diff/1000)%60);
+
+  document.getElementById("statusText").innerHTML="🔒 Belum dibuka";
+}
+
+setInterval(update,1000);
+
+const dataSiswa = [
+    {nisn:"001", nama:"JHODY SEPTIAN PRIADI", kelas:"X E1", status:"TIDAK LULUS"},
+  {nisn:"0089719199", nama:"ABIMAYU LANTANG DINANBANA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0074130017", nama:"AHMAD GHIFAR", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0089063463", nama:"AKHTAR GAZALA RAZALDI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0076018265", nama:"AL ISA I HAQO DEFENDRI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0073864187", nama:"BAMBANG AL FACHRI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0087637395", nama:"BINTANG ANANTHA PASUVA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0088892301", nama:"BRAM JODIO MODENA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0081135671", nama:"CLAUDIO APRILIA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0069908943", nama:"DAMAR NUGRAHA PUTERA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0071122206", nama:"ERVAN RAHMADANI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0087581652", nama:"FACHRI ADRIAN RAMIRO", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0072567956", nama:"FAIZA BILQIS FADHILLAH", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0083498339", nama:"FAPRIZIO DEL PIERO", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0088120739", nama:"FARDAD RAZAQ PARMATO", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0071195153", nama:"FARHAN ALFAREZI YUSTI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0081569662", nama:"FARIL ALYAUMA AKMAL", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0083495921", nama:"FUAD FADILA YALSA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0073939401", nama:"JIHAD INSANY", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0089254360", nama:"KHAILARAHMA DWI KIRANA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0072670622", nama:"LINGGA MAHARDIKA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0088706058", nama:"LUCKY NELEFRAN", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0086236798", nama:"MOCH. DELVINO AL FATTAN", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0084452779", nama:"MORAJOGI VICLAN", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0085305744", nama:"MUHAMMAD ALTAF PIANDRA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0074388970", nama:"MUHAMMAD BINTANG PENDAWA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0084096847", nama:"MUHAMMAD FATHIR ALFAH RIZAN", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0083688664", nama:"MUHAMMAD SIDIQ BARI HAFIZHAN", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0079077269", nama:"PUTI NILAM SARI RINALDO", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0086687325", nama:"RAFI BIMA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0071590806", nama:"RAYHAN SAFANA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0075715402", nama:"RIZKI RAMADANI PUTRA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0086288564", nama:"SAYYID BAYHAQI DINATA", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0084387591", nama:"SHAFAA NAILATUL IZZAH", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0089560650", nama:"SYAFIRA ISMALIANDI", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0088882359", nama:"THIGAUDY HF", kelas:"XII F1+", status:"LULUS"},
+  {nisn:"0071888845", nama:"AINUL MARDIAH DANIL", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0089997627", nama:"ALIFFA LAURA PRATISTA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0088407866", nama:"ANNA ALFA TUNISSA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0081377702", nama:"ASSYIFA ALWI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0088737312", nama:"ATIKA FITRI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0078840337", nama:"AURELLY AGUSTIN", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0082357240", nama:"AZZAHRA SHILA ULAYYA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0073045572", nama:"CHELSY", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0078463212", nama:"CHELSYA KARISMA PUTRI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0085244346", nama:"DIARRA UFAIRA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0072499466", nama:"E. GASTENO HUDAYA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0089265074", nama:"ELLITHA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0073161911", nama:"ELVIOLA SAPUTRI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0083965130", nama:"FADHLAN AZMI KURNIAWAN", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0089202615", nama:"HAFIZA 'ILMI AULIA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0079083933", nama:"JIHAN BALQIS", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0086637048", nama:"KAILA DEANA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0082567963", nama:"KANIA STEVANI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0071726273", nama:"KAYLA HANIFA ARPA NITA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0084889269", nama:"KEISHA DZAKIYAH", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0089292595", nama:"LARISA ANANDA PRISSILA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0073570513", nama:"LUBNA SAHARA GISTA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0084771259", nama:"MAIZA ULIMA CHALILLAH", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0086715459", nama:"MUHAMMAD FACHRI ISKANDAR", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0078609284", nama:"NOVRISKA AJIZAH PUTRI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0077620464", nama:"RUVITCHA NURUL NAVARAH", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0084516014", nama:"RYAMIZARD GHAISAN ALGIFARI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0079003182", nama:"SERFA FAMIASARI", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0079684210", nama:"SYAHDAN RAMADHAN", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0072205762", nama:"SYAKEILA KHOLILA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0088447966", nama:"SYAKINA AL MAJID", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0085343848", nama:"TANISHA ROHIMA HAZLA", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0074784686", nama:"THIO EDRIK BATIO", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0079911259", nama:"ZAHRAH AZIZAH", kelas:"XII F2+", status:"LULUS"},
+  {nisn:"0084176640", nama:"ABHINAYA BAGASKARA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0084352946", nama:"ADILA PUTRI JUWITA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0078982123", nama:"ADITA ZAHARA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0077797077", nama:"AISYAH ARIVA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0076458556", nama:"AISYAH AZHARIA RAMADHANI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0075054252", nama:"ASHYFA AULIA FIRSTY", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0084455425", nama:"ATSILAH HAURA ARTA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0087491424", nama:"AYATUL HAYYI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0079972333", nama:"AZIZAH AULIA SIFA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0083614151", nama:"CANYA VIRA AFRIZAL", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0087019002", nama:"CHELSIE ADZRA TALIQAH", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0071783652", nama:"CHELSY SUSANTI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0083731829", nama:"DAVA VEDA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0073293741", nama:"DONITA ANASTASYA PUTRI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0076987100", nama:"DWI NAZIRAH AZIZAH", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0082858097", nama:"FARDZAHEIN AZKA ABSIE", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0073090848", nama:"FIOLA NABILA PUTRI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"3070155983", nama:"FITRI RAMADHANI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0069168277", nama:"M. ZAKKY AFANDA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0087859015", nama:"MARSHA ADHWAA NADHIRA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0085239456", nama:"MUTIARA AFRILYA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0082044671", nama:"NAILA NAHDAH", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0072287677", nama:"NAIRA KHAIRANI AZZURA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0074731389", nama:"NAJWA KHAIRUNNISA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0087726941", nama:"NAKWA NABILKY AKSA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0087473018", nama:"NAYSILA HASANAH DWI CAHYANI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0072278427", nama:"NAZIHAH DESTU ADRIZA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0086336175", nama:"NIDYA AULIA SHAFIRA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0073187683", nama:"PUTRI AULIA AL RAHMADHANI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0081785740", nama:"TRI LUNA ZASKYA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0088939097", nama:"ZAHIRA AFRIHAINI", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0088985550", nama:"ZAHWA FADILAH NURJANNAH", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0079781912", nama:"ZOHRA KALONICA", kelas:"XII F3+", status:"LULUS"},
+  {nisn:"0055569736", nama:"ADRIAN MAULANA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0088827684", nama:"ADY TIO SUPARTO", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0069041699", nama:"AHMAD RIZKI ADHAVI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0089861801", nama:"AYU GUSRI NINGSIH", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0083477580", nama:"CHESYA NURUL FADILLA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0075010407", nama:"DAVINA SILVIA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0085465512", nama:"DHAFA RADITIO", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0065159371", nama:"DIMAS NUGRAHA PUTERA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0073749734", nama:"DIVA ZAHARA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0084030096", nama:"FARISAH KIA SATINA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0063880259", nama:"FRANSQIO ELIAN", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0083510058", nama:"GHAISA FARAH NASYWA S.", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0088788800", nama:"HARDIYANTI LUELA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0078592869", nama:"HAZIZA TRY ISNA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0076469011", nama:"HIQAYAH DERMAWAN. MZ", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0079318087", nama:"JIBRIL ALI NATHAN", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0078837566", nama:"JOEVANA NANDIRA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0076437596", nama:"KESHA ALNERA PUTRI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0071754309", nama:"KEYSHA RAHMADHINI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"3079138832", nama:"LIZA ZONITA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0083735427", nama:"MUHAMMAD DIMAS AKBAR", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0078859245", nama:"MULYA KURNIA PUTRI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0088683320", nama:"NADIYA HARDIYAN", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0077474463", nama:"NAUFAL JIBRAN GUSTAMA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0087555129", nama:"NAYSILLA RIBBY ANDINI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0074807429", nama:"QURNIADI ILLAHI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0076839341", nama:"RADITMA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0071454534", nama:"RAISYAH NURUL ZIHNI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0072501920", nama:"REGHAL AL- AZHIIMU YUVI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0078036138", nama:"RHAYSA OKTAVIRIA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0073230184", nama:"SALVIAN JUMATUL DIEMAS", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0072312581", nama:"SELVITA RAHMADHANI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0081435181", nama:"SOKHI FERNANDO FEBRIANTO LAIA", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0074861600", nama:"ZAYED LATAZAN", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0086691169", nama:"ZIKRA RAHMADANI", kelas:"XII F4+", status:"LULUS"},
+  {nisn:"0087799949", nama:"ADELLA NINDRI AVISCENNA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086131266", nama:"AKBAR GHANDY IBRAHIM", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0071813974", nama:"ALICIA RAMADANI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0085262590", nama:"ALITA RIYANI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0078907589", nama:"ALVIAN JASTISIO RAMADHAN", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0078802242", nama:"BUNGA YULIA PUTRI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0071468803", nama:"CHESYA ADIVA AZZAHRA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0051529474", nama:"DAVI YOANDA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0077253440", nama:"DELVIN ASRI RAMADHAN", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0067089901", nama:"DWI PINKAN PUTRI AYU NINGSIH", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086612117", nama:"ELSTIVA HASNAH BALQIS", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0073468845", nama:"IKHSAN ABDILLAH", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086995057", nama:"KAYLA RAHMADANI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0082123809", nama:"KEISYA RENATA AULIANI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0083041721", nama:"KHAIRINNISA AMALIYAH", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0089894745", nama:"KIAN TRI KURNIAWAN", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0082243347", nama:"M. FARDHAN KURNIAWAN", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086399691", nama:"MUHAMMAD ALTOURIC", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0081769506", nama:"NABILA SYAFITRI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0083467694", nama:"NADHIRA PUTRI FISMA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086689205", nama:"NISRINA WELYA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0085894549", nama:"QHOIRUM HALFI SARRY", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0086767137", nama:"RAFIQON FELLICIA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0072063040", nama:"RAHMA ALYA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0074671991", nama:"RAISYA HADI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0071485817", nama:"RATULIYAN SEPTRIANZA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0077305909", nama:"ROBI ANDIKA SAPUTRA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0055648364", nama:"SILMADORA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0076910843", nama:"TRIZELIA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0082131421", nama:"UTARI", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0051609428", nama:"ZAHRA ELFANNY", kelas:"XII F5+", status:"LULUS"},  
+  {nisn:"0082715011", nama:"ZAHWA HIDIYANNISA", kelas:"XII F5+", status:"LULUS"},
+  {nisn:"0077469206", nama:"ADI ARYANTO", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0074697209", nama:"ALIB PARTAYA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0086596462", nama:"ALYA NAZIFAH", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0071562977", nama:"ALYA RENATA PUTRI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0076348698", nama:"ANISYA VATHIN", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0067247845", nama:"ARIFAN", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0076489754", nama:"ARYA TRIASA RUSMANA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0072223352", nama:"AURELIA RIANTI SALSABILA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0068056231", nama:"AZ. ZAHRAH", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0085216264", nama:"AZZAHRA SUKWI FAIZA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0054115995", nama:"BENING HARISKA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0089347400", nama:"BERBIE FLORENSIA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0084476892", nama:"DIAJENG HARYNDRA YASIFA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0076860710", nama:"FADILAH TUL HUSNA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0073563113", nama:"FAREL ANTONIO", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0066052607", nama:"GENTA BILARDO", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0088797986", nama:"HANIFA SALSABILA AZ ZAHRA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0052372318", nama:"ILHAM DWI CAHYO", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0078886061", nama:"ISRA AGUSTIN", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0079724286", nama:"KENIA FERALDYNA PUTRI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0082874963", nama:"KEYSHA DELIA RAMADANI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0086944771", nama:"MARSHA KHAIRUNNISA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0072317898", nama:"MUHAMMAD FAIZ RIPASYAH", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0089013744", nama:"MUHAMMAD FHADIL", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0072241027", nama:"NAFILAH HAJIDAH", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0088198851", nama:"NATASYA PUTRI CAHYADI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0085638320", nama:"NAYLA FIKRA APRILIANI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0079732369", nama:"RUKE MARYANDRA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0077693413", nama:"SENO FALAH GANECI", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0082944787", nama:"SHOFI AZAHRA LUTHFIYAH", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0087125622", nama:"STEVANES DWI CEXCIO", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0073404656", nama:"ZACKY KURNIA", kelas:"XII F6+", status:"LULUS"},
+  {nisn:"0079885367", nama:"AFIFAH SALWA RAMADHANI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0074952189", nama:"AL FAUZI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0079167210", nama:"ALIFAH MUTIA TASYA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0089520521", nama:"ANDINI ANANTASYA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0085361825", nama:"ARKA SATRIA WARDHANA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0088884377", nama:"ASIPA DARLISA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0074404647", nama:"BUNGA MIRANTY INDAHARINI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0071307165", nama:"CELINE REVALAN", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0077957107", nama:"CHELSEA ALFA CHABILA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0079560793", nama:"DIAN PURNAMA SARI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0088013034", nama:"DICKY ANDRIAN", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0077567161", nama:"DZIKRI NOVRI ANANDA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0075327779", nama:"FIKHRI ARDIANSYAH", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0087702920", nama:"GEOVANO PRATAMA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0087691562", nama:"GINA FADILLAH", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0087971769", nama:"HAZEL BUDI PRATAMA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0077624118", nama:"KRISNA PUTRA NORINDRA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0088158974", nama:"M. FADEL AL FALAH", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0082200277", nama:"MARCHEL BAADILLAH", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0078681083", nama:"MARDIANA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0088335496", nama:"MARSYA AURELIA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0089129382", nama:"MUHAMMAD FAREL", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0071246337", nama:"MUHAMMAD RADIFLAN MAIZORA SYAHPUTRA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0081417009", nama:"MUHAMMAD RADIT", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0079612064", nama:"MUTIARA NAFISAH", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0077441437", nama:"NABIL ALIVTA PARVES", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0083064804", nama:"NABILA WULANDARI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0077381560", nama:"NAKEISYA SAURA RAMADHANI", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0075451809", nama:"RAZI ADRIAN DINATA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0079030765", nama:"ROMI MAULANA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0085954077", nama:"SALSABHILA NANDIKA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0084672981", nama:"SARAH ANGGRAINY", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0085639825", nama:"SHELLY ALIFYA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0085184735", nama:"ULFATUN HASANAH AFDA", kelas:"XII F7+", status:"LULUS"},
+  {nisn:"0084396060", nama:"WINDI DEA PUTRI", kelas:"XII F7+", status:"LULUS"},
+];
+
+function cek(){
+  const nisn = document.getElementById("nisn").value.trim();
+  const siswa = dataSiswa.find(s => s.nisn === nisn);
+  const hasil = document.getElementById("hasil");
+
+  if(!siswa){
+    hasil.innerHTML = `<div>Data tidak ditemukan</div>`;
+    return;
+  }
+
+  const pesan = siswa.status === "LULUS"
+    ? "Silakan melakukan pengambilan Surat Keterangan Lulus di sekolah sesuai jadwal."
+    : "Tetap semangat. Silakan konsultasi ke pihak sekolah untuk informasi lebih lanjut.";
+
+  hasil.innerHTML = `
+  <div class="snbp-result">
+    <div class="snbp-header">
+      ${siswa.status === "LULUS" ? "SELAMAT!" : ""} ANDA DINYATAKAN ${siswa.status}
+    </div>
+
+    <div class="snbp-body">
+      <div class="snbp-left">
+        <div class="snbp-info">NISN: ${siswa.nisn}</div>
+        <div class="snbp-name">${siswa.nama}</div>
+        <div class="snbp-info">${siswa.kelas}</div>
+
+        <div class="snbp-status ${siswa.status==="LULUS"?"lulus":"tidak"}">
+          ${siswa.status}
+        </div>
+
+        <div class="snbp-box">${pesan}</div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+</script>
+
+</body>
+</html>
