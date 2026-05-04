@@ -182,6 +182,13 @@ button{
       <li>Tidak melakukan tindakan yang mengganggu ketertiban umum</li>
       <li>Menggunakan momen kelulusan secara bijak dan positif</li>
     </ul>
+      <h3>Ketentuan Pengambilan SKL</h3>
+    <ul>
+      <li>Siswa wajib telah memiliki kartu bebas pustaka</li>
+      <li>Siswa wajib mengenakan seragam putih abu-abu lengkap serta sepatu saat pengambilan</li>
+      <li>Pengambilan SKL dilakukan di Kantor Tata Usaha SMAN 1 Sawahlunto pada jam kerja, dan sudah dapat dilakukan mulai tanggal 5 Mei 2026</li>
+      <li>Siswa yang tidak memenuhi ketentuan tersebut tidak diperkenankan melakukan pengambilan SKL</li>
+    </ul>
   </div>
 
   <div id="countdownBox">
@@ -205,7 +212,7 @@ button{
 
 <script>
 
-const target = new Date("2026-05-04T22:00:00+07:00").getTime();
+const target = new Date("2025-05-04T19:22:00+07:00").getTime();
 
 function update(){
   const now = new Date().getTime();
@@ -481,7 +488,7 @@ function cek(){
   }
 
   const pesan = siswa.status === "LULUS"
-    ? "Silakan melakukan pengambilan Surat Keterangan Lulus di sekolah sesuai jadwal."
+    ? "Silakan melakukan pengambilan Surat Keterangan Lulus di sekolah sesuai Ketentuan di atas."
     : "Tetap semangat. Silakan konsultasi ke pihak sekolah untuk informasi lebih lanjut.";
 
   hasil.innerHTML = `
