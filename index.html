@@ -183,7 +183,7 @@ button{
       <li>Menggunakan momen kelulusan secara bijak dan positif</li>
     </ul>
     <br>
-      <h3>Ketentuan Pengambilan SKL</h3>
+    <h3>Ketentuan Pengambilan SKL</h3>
     <ul>
       <li>Siswa wajib telah memiliki kartu bebas pustaka</li>
       <li>Siswa wajib mengenakan seragam putih abu-abu lengkap serta sepatu saat pengambilan</li>
@@ -213,7 +213,7 @@ button{
 
 <script>
 
-const target = new Date("2026-05-04T22:00:00+07:00").getTime();
+const target = new Date("2025-05-04T22:00:00+07:00").getTime();
 
 function update(){
   const now = new Date().getTime();
@@ -489,14 +489,16 @@ function cek(){
   }
 
   const pesan = siswa.status === "LULUS"
-    ? "Silakan melakukan pengambilan Surat Keterangan Lulus di sekolah sesuai Ketentuan di atas."
+    ? "Silakan melakukan pengambilan Surat Keterangan Lulus di sekolah sesuai Ketentuan di atas"
     : "Tetap semangat. Silakan konsultasi ke pihak sekolah untuk informasi lebih lanjut.";
 
   hasil.innerHTML = `
   <div class="snbp-result">
-    <div class="snbp-header">
-      ${siswa.status === "LULUS" ? "SELAMAT!" : ""} ANDA DINYATAKAN ${siswa.status}
-    </div>
+<div class="snbp-header">
+  ${siswa.status === "LULUS" 
+    ? "SELAMAT!" 
+    : "INFORMASI HASIL KELULUSAN"}
+</div>
 
     <div class="snbp-body">
       <div class="snbp-left">
@@ -504,9 +506,9 @@ function cek(){
         <div class="snbp-name">${siswa.nama}</div>
         <div class="snbp-info">${siswa.kelas}</div>
 
-        <div class="snbp-status ${siswa.status==="LULUS"?"lulus":"tidak"}">
-          ${siswa.status}
-        </div>
+    <div class="snbp-status ${siswa.status==="LULUS"?"lulus":"tidak"}">
+      ANDA DINYATAKAN ${siswa.status}
+    </div>
 
         <div class="snbp-box">${pesan}</div>
       </div>
